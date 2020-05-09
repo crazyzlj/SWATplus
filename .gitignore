@@ -1,13 +1,34 @@
-build/*
-backup/*
+# Compiled Object files
+*.slo
+*.lo
 *.o
-*.mod
-*.depend
-*.a
-*.log
-*.stackdump
-*.exe
+*.obj
 
-*.txt
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
 *.out
-!CMakeLists.txt
+*.app
+
+# PyCharm or CLion project files (JetBeans)
+.idea
+cmake-build*/
+build*/
+bin
