@@ -362,14 +362,15 @@
           end if
           sd_ch(ich)%chw = sd_ch(ich)%chw + 2. * erode_bank / 100.
           sd_ch(ich)%chs = sd_ch(ich)%chs - (erode_btm / 100.) / (sd_ch(ich)%chl * 1000.)
-          sd_ch(ich)%chs = MAX(sd_chd(isd_db)%chseq, sd_ch(ich)%chs)
+          sd_ch(ich)%chs = amax1 (sd_chd(isd_db)%chseq, sd_ch(ich)%chs)
 
         end if
 
       !! compute sediment leaving the channel
 	  washld = (1. - sd_chd(isd_db)%bedldcoef) * ht1%sed
 	  sedout = washld + hc_sed + deg_btm + deg_bank
-      dep = bedld - deg_btm - deg_bank
+      dep = ht1%sed - sedout
+      dep = amax1 (0., dep)
       ht2%sed = sedout
 
       !! set values for outflow hydrograph
@@ -409,23 +410,27 @@
       !! mm * ha * m/1000 mm = ha-m
       ch_wat_d(ich)%precip = wst(iwst)%weat%precip * ch_wat_d(ich)%area_ha / 1000.
       ch_wat_d(ich)%evap = bsn_prm%evrch * wst(iwst)%weat%pet * ch_wat_d(ich)%area_ha / 1000.
-      ch_wat_d(ich)%seep = 24. * sd_chd(isd_db)%chk * ch_wat_d(ich)%area_ha / 1000.
-      ht1%flo = ht1%flo + 10. * ch_wat_d(ich)%precip      !ha-m * 10 = m3
-      !! subtract evaporation
-      if (ht1%flo < 10. * ch_wat_d(ich)%evap) then
-        ch_wat_d(ich)%evap = ht1%flo / 10.      !m3 -> ha-m
-        ht1%flo = 0.
-      else
-        ht1%flo = ht1%flo - 10. * ch_wat_d(ich)%evap
-      end if
+      ch_wat_d(ich)%seep = sd_chd(isd_db)%chk * ch_wat_d(ich)%area_ha / 1000.     !k units to mm/d
+      
+      !! add precip
+      ht1%flo = ht1%flo + 10000. * ch_wat_d(ich)%precip      !ha-m * 10 = m3
+      
       !! subtract seepage
-      if (ht1%flo < 10. * ch_wat_d(ich)%seep) then
-        ch_wat_d(ich)%seep = ht1%flo / 10.      !m3 -> ha-m
+      if (ht1%flo < 10000. * ch_wat_d(ich)%seep) then
+        ch_wat_d(ich)%seep = ht1%flo * 10000.      !m3 -> ha-m
         ht1%flo = 0.
       else
-        ht1%flo = ht1%flo - 10. * ch_wat_d(ich)%seep
+        ht1%flo = ht1%flo - 10000. * ch_wat_d(ich)%seep
       end if
       
+      !! subtract evaporation
+      if (ht1%flo < 10000. * ch_wat_d(ich)%evap) then
+        ch_wat_d(ich)%evap = ht1%flo * 10000.      !m3 -> ha-m
+        ht1%flo = 0.
+      else
+        ht1%flo = ht1%flo - 10000. * ch_wat_d(ich)%evap
+      end if
+
       !! calculate hydrograph leaving reach and storage in channel
       if (time%step == 0) rt_delt = 1.
       det = 24.* rt_delt
@@ -455,7 +460,7 @@
       end if
       
       !! output channel organic-mineral
-      ch_out_d(ich) = ht2                       !set inflow om hydrograph
+      ch_out_d(ich) = ht2                       !set outflow om hydrograph
       ch_out_d(ich)%flo = ht2%flo / 86400.      !m3 -> m3/s
       
       !! output channel morphology

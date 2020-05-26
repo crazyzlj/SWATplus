@@ -29,24 +29,24 @@
       integer, dimension (8) :: fdc_p = (/18,36,91,182,274,328,347,366/) !              |
       
       type hyd_output
-        real :: flo = 0.               !! m^3/s        |volume of water
-        real :: sed = 0.               !! metric tons  |sediment
-        real :: orgn = 0.              !! kg N         |organic N
-        real :: sedp = 0.              !! kg P         |organic P
-        real :: no3 = 0.               !! kg N         |NO3-N
-        real :: solp = 0.              !! kg P         |mineral (soluble P)
-        real :: chla = 0.              !! kg           |chlorophyll-a
-        real :: nh3 = 0.               !! kg N         |NH3
-        real :: no2 = 0.               !! kg N         |NO2
-        real :: cbod = 0.              !! kg           |carbonaceous biological oxygen demand
-        real :: dox = 0.               !! kg           |dissolved oxygen
-        real :: san = 0.               !! tons         |detached sand
-        real :: sil = 0.               !! tons         |detached silt
-        real :: cla = 0.               !! tons         |detached clay
-        real :: sag = 0.               !! tons         |detached small ag
-        real :: lag = 0.               !! tons         |detached large ag
-        real :: grv = 0.               !! tons         |gravel
-        real :: temp = 0.              !! deg c        |temperature
+        real :: flo = 0.               !! m^3           |volume of water
+        real :: sed = 0.               !! metric tons   |sediment
+        real :: orgn = 0.              !! kg N          |organic N
+        real :: sedp = 0.              !! kg P          |organic P
+        real :: no3 = 0.               !! kg N          |NO3-N
+        real :: solp = 0.              !! kg P          |mineral (soluble P)
+        real :: chla = 0.              !! kg            |chlorophyll-a
+        real :: nh3 = 0.               !! kg N          |NH3
+        real :: no2 = 0.               !! kg N          |NO2
+        real :: cbod = 0.              !! kg            |carbonaceous biological oxygen demand
+        real :: dox = 0.               !! kg            |dissolved oxygen
+        real :: san = 0.               !! tons          |detached sand
+        real :: sil = 0.               !! tons          |detached silt
+        real :: cla = 0.               !! tons          |detached clay
+        real :: sag = 0.               !! tons          |detached small ag
+        real :: lag = 0.               !! tons          |detached large ag
+        real :: grv = 0.               !! tons          |gravel
+        real :: temp = 0.              !! deg c         |temperature
       end type hyd_output
       
       type (hyd_output), dimension(:),allocatable :: hd
@@ -162,7 +162,7 @@
       type timestep
         type (hyd_output), dimension(:),allocatable :: hh
       end type timestep
-      type (timestep), dimension(:),allocatable, save :: ts
+      type (timestep), dimension(:), allocatable, save :: ts
 
       type sorted_duration_curve
         !linked list to sort the flow duration curves
@@ -324,7 +324,7 @@
         integer :: hru_lte = 5      !1=total 2=recharge 3=surface 4=lateral 5= tile
         integer :: ru = 5           !1=total 2=recharge 3=surface 4=lateral 5= tile
         integer :: modflow = 1      !1=total
-        integer :: aqu = 2          !1=return flow 3= deep perc
+        integer :: aqu = 2          !1=return flow 2=deep perc
         integer :: chan = 3         !1=total 2=recharge 3=overbank
         integer :: res = 2          !1=total 2=recharge 
         integer :: recall = 1       !1=total
@@ -333,7 +333,7 @@
         integer :: pump = 1         !1=total
         integer :: outlet = 1       !1=total
         integer :: chandeg = 3      !1=total 2=recharge 3=overbank
-        integer :: aqu2d = 2        !1=return flow 3= deep perc
+        integer :: aqu2d = 2        !1=return flow 3=deep perc
         integer :: herd = 1
         integer :: wro = 1
       end type object_total_hydrographs
@@ -906,7 +906,7 @@
         type (hyd_output) :: hyd2
         hyd2%temp = hyd1%temp
         hyd2%flo = const * hyd1%flo 
-        hyd2%sed = const * hyd1%sed / 1000.
+        hyd2%sed = const * hyd1%sed !/ 1000.
         hyd2%orgn = const * hyd1%orgn       
         hyd2%sedp = const * hyd1%sedp 
         hyd2%no3 = const * hyd1%no3

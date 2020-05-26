@@ -21,7 +21,7 @@
 !!    ~ ~ ~ PURPOSE ~ ~ ~
 !!    this subroutine outputs HRU variables on daily, monthly and annual time steps
      
-      iob = sp_ob1%res  !! nbs
+      iob = sp_ob1%res
           
       !! print balance for each pesticide
       do ipest = 1, cs_db%num_pests

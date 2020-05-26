@@ -17,15 +17,13 @@
       integer :: iday                     !             |
       integer :: mfe                      !             |
       integer :: iyr_ch                   !             | 
-      
-      
 
         !set linked list for daily flow duration curves
         ob(icmd)%fdc_ll(time%day)%val = ob(icmd)%hd(1)%flo
         next = ob(icmd)%fdc%mfe
         npts = time%day - 1
         do ipts = 1, npts
-          if (ob(icmd)%fdc_ll(time%day)%val <= ob(icmd)%fdc_ll(next)%val) then
+          if (ob(icmd)%fdc_ll(time%day)%val >= ob(icmd)%fdc_ll(next)%val) then
             ob(icmd)%fdc_ll(time%day)%next = next
             if (ipts == 1) then
               ob(icmd)%fdc%mfe = time%day

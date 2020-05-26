@@ -40,8 +40,7 @@
       real :: dep_below_soil   !          |  
       real :: perc_ln_func
 
-      !calibrate hydrology
-        ical_hyd = 0
+      ! calibrate hydrology
         iter_all = 1
         iter_ind = 1
 

@@ -234,8 +234,7 @@
               end if
             end if
                                                                         
-            !irrigate IF water stress is < 0.7                             
-                                                                        
+            !irrigate IF water stress is < 0.8                             
             IF (hlt_db(ihlt_db)%irr > "no_irr") THEN 
               IF (ws < 0.8) THEN 
                 air = hlt(isd)%awc - hlt(isd)%sw 

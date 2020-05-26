@@ -59,13 +59,17 @@
       end if
 
         !! COMPUTE LATERAL FLOW USING HILLSLOPE STORAGE METHOD
-        if (soil(j)%phys(ly1)%ul - soil(j)%phys(ly1)%fc == 0.) then
+        if (soil(j)%phys(ly1)%ul - soil(j)%phys(ly1)%fc <= 0.) then
           ho = 0.
         else
           ho = 2. * sw_excess / ((soil(j)%phys(ly1)%ul - soil(j)%phys(ly1)%fc) / soil(j)%phys(ly1)%thick)
         end if
-        latlyr = adjf * ho * soil(j)%phys(ly1)%k * hru(j)%topo%slope / hru(j)%topo%lat_len * .024
-
+        if (ly1 == 1) then
+          latlyr = 0.
+        else
+          latlyr = adjf * ho * soil(j)%phys(ly1)%k * hru(j)%topo%slope / hru(j)%topo%lat_len * .024
+        end if
+        
       if (latlyr < 0.) latlyr = 0. 
       if (latlyr > sw_excess) latlyr = sw_excess
 

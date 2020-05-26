@@ -389,7 +389,7 @@
           call smp_grass_wway
         end if
 
-	 !! compute reduction in pollutants due to in fixed BMP eff
+	   !! compute reduction in pollutants due to in fixed BMP eff
 	   if (hru(j)%lumv%bmp_flag == 1) then
           call smp_bmpfixed
         end if
@@ -425,8 +425,7 @@
       iob_out = iob
       ! if the hru is part of a ru and it is routed
       if (ob(iob)%ru_tot > 0) then
-        iru = ob(iob)%ru(1)
-        iob_out = sp_ob1%ru + iru - 1
+        iob_out = sp_ob1%ru + ob(iob)%ru(1) - 1
       end if
       
       hwb_d(j)%surq_cha = 0.

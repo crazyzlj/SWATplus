@@ -10,14 +10,14 @@
       
       implicit none
       
-      integer :: jres             !none      |hru number
+      integer,  intent (in) :: jres             !none      |hru number
       integer :: nstep            !none      |counter
       integer :: tstep            !none      |hru number
       integer :: iac              !none      |counter 
-      integer :: id               !none      |hru number
+      integer,  intent (in) :: id               !none      |hru number
       integer :: ial              !none      |counter
       integer :: irel             !          |
-      integer :: ihyd             !          |
+      integer,  intent (in) :: ihyd             !          |
       real :: vol                 !          |
       real :: b_lo                !          |
       character(len=1) :: action  !          |
@@ -45,6 +45,7 @@
             select case (dtbl_res(id)%act(iac)%option)
             case ("rate")
               ht2%flo = dtbl_res(id)%act(iac)%const * 86400.
+              
             case ("days")
               select case (dtbl_res(id)%act(iac)%file_pointer)
                 case ("null")

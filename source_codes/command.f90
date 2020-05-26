@@ -54,7 +54,7 @@
         end if
         
         !sum all receiving hydrographs
-        if (ob(icmd)%rcv_tot > 0) then
+        !if (ob(icmd)%rcv_tot > 0) then
           ob(icmd)%hin = hz
           ob(icmd)%hin_sur = hz
           ob(icmd)%hin_lat = hz
@@ -69,6 +69,7 @@
           if (time%step > 0) ob(icmd)%tsin(:) = hz
           ob(icmd)%peakrate = 0.
           
+          if (ob(icmd)%rcv_tot > 0) then
           do in = 1, ob(icmd)%rcv_tot
             iob = ob(icmd)%obj_in(in)
             ihyd = ob(icmd)%ihtyp_in(in)
@@ -94,7 +95,7 @@
               else
                 ! if hyd in is not a total hyd from an hru or ru -> add the specified hyd typ 
                 select case (ob(icmd)%htyp_in(in))
-                case ("tot")   ! tile flow
+                case ("tot")   ! total flow
                   ob(icmd)%hin_sur = ob(icmd)%hin_sur + frac_in * ob(iob)%hd(ihyd)
                   !add constituents
                   if (cs_db%num_tot > 0) then
@@ -147,14 +148,14 @@
 
           !convert to per area basis
           if (ob(icmd)%typ == "hru" .or. ob(icmd)%typ == "ru") then  !only convert hru and subbasin hyds for routing
-            if (ob(icmd)%ru_tot > 0) then
-              !object is in a subbasin
-              ielem = ob(icmd)%elem
-              iru = ob(icmd)%ru(1)  !can only be in one subbasin if routing over
-              conv = 100. * ru(iru)%da_km2  !* ru_elem(ielem)%frac
-            else
+            !if (ob(icmd)%ru_tot > 0) then
+            !  !object is in a subbasin
+            !  ielem = ob(icmd)%elem
+            !  iru = ob(icmd)%ru(1)  !can only be in one subbasin if routing over
+            !  conv = 100. * ru(iru)%da_km2  !* ru_elem(ielem)%frac
+            !else
               conv = ob(icmd)%area_ha
-            end if
+            !end if
             ob(icmd)%hin_sur = ob(icmd)%hin_sur // conv
             ob(icmd)%hin_lat = ob(icmd)%hin_lat // conv
             ob(icmd)%hin_til = ob(icmd)%hin_til // conv
@@ -236,10 +237,41 @@
           case ("chandeg")  !swatdeg channel
             isdch = ob(icmd)%num
             isd_chsur = ob(icmd)%props2
-            call sd_channel_control
+            if (sd_ch(isdch)%chl > 1.e-3) then
+              call sd_channel_control
+            else
+                !! artificial channel - length=0 - no transformations
+                ob(icmd)%hd(1) = ob(icmd)%hin
+                
+                ch_in_d(isdch) = ht1                        !set inflow om hydrograph
+                chsd_d(isdch)%flo_in = ht1%flo / 86400.     !flow for morphology output
+                ch_in_d(isdch)%flo = ht1%flo / 86400.       !flow for om output
+                ch_out_d(isdch) = ht1                       !set inflow om hydrograph
+                ch_out_d(isdch)%flo = ht1%flo / 86400.      !m3 -> m3/s
+                !! output channel morphology
+                chsd_d(isdch)%flo = ht1%flo / 86400.        !adjust if overbank flooding is moved to landscape
+                chsd_d(isdch)%peakr = 0. 
+                chsd_d(isdch)%sed_in = ob(icmd)%hin%sed
+                chsd_d(isdch)%sed_out = ob(icmd)%hin%sed
+                chsd_d(isdch)%washld = 0.
+                chsd_d(isdch)%bedld = 0.
+                chsd_d(isdch)%dep = 0.
+                chsd_d(isdch)%deg_btm = .0
+                chsd_d(isdch)%deg_bank = 0.
+                chsd_d(isdch)%hc_sed = 0.
+                chsd_d(isdch)%width = sd_ch(isdch)%chw
+                chsd_d(isdch)%depth = sd_ch(isdch)%chd
+                chsd_d(isdch)%slope = sd_ch(isdch)%chs
+                chsd_d(isdch)%deg_btm_m = 0.
+                chsd_d(isdch)%deg_bank_m = 0.
+                chsd_d(isdch)%hc_m = 0.
+                if (cs_db%num_tot > 0) then
+                  obcs(icmd)%hd(1) = obcs(icmd)%hin
+                end if
+            end if
             
           end select
-        if (pco%fdcout == "y") call flow_dur_curve
+        if (pco%fdcout == "y" .and. ob(icmd)%typ == "chandeg") call flow_dur_curve
         
         !print all outflow hydrographs
         if (ob(icmd)%src_tot > 0) then
@@ -322,7 +354,7 @@
         if (sp_ob%chan > 0) call basin_channel_output
         if (sp_ob%chandeg > 0) call basin_chanmorph_output
         if (sp_ob%chandeg > 0) call basin_sdchannel_output
-        if (sp_ob%recall > 0) call basin_recall_output   !!! all recall outputs need to be addressed
+        if (sp_ob%recall > 0) call basin_recall_output
         call soil_nutcarb_output
         !call lsreg_output
         !call region_aquifer_output

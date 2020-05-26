@@ -356,7 +356,6 @@
               jj = rcv_sum(kk)                                ! jj=seqential receiving number
               ob(kk)%obj_in(jj) = i                           ! source object number (for receiving unit)
               ob(kk)%obtyp_in(jj) = ob(i)%typ
-              ob(kk)%obtypno_in(jj) = i
               ob(kk)%htyp_in(jj) = ob(i)%htyp_out(ii)
               ob(kk)%ihtyp_in(jj) = ob(i)%ihtyp_out(ii)
               ob(kk)%frac_in(jj) = ob(i)%frac_out(ii)
@@ -367,7 +366,7 @@
             jj = rcv_sum(kk)                                ! jj=seqential receiving number
             ob(kk)%obj_in(jj) = i                           ! source object number (for receiving unit)
             ob(kk)%obtyp_in(jj) = ob(i)%typ
-            ob(kk)%obtypno_in(jj) = i
+            ob(kk)%obtypno_in(jj) = ob(i)%num
             ob(kk)%htyp_in(jj) = ob(i)%htyp_out(ii)
             ob(kk)%ihtyp_in(jj) = ob(i)%ihtyp_out(ii)
             ob(kk)%frac_in(jj) = ob(i)%frac_out(ii)
@@ -400,7 +399,7 @@
       iord = 1
       dfn_sum = 0
       
-      do while (idone == 0)
+    do while (idone == 0)
         do i = 1, sp_ob%objs
           !check if all incoming and defining objects have been met
           !if not sum incoming 

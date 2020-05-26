@@ -73,7 +73,7 @@
 
       ! constituent mass - soil, plant, aquifer, channel and reservoir
       type constituent_mass
-        real, dimension (:), allocatable :: pest      !mg/ha          |pesticide in soil layer
+        real, dimension (:), allocatable :: pest      !kg/ha          |pesticide in soil layer
         real, dimension (:), allocatable :: path      !pathogen hydrographs
         real, dimension (:), allocatable :: hmet      !heavy metal hydrographs
         real, dimension (:), allocatable :: salt      !salt ion hydrographs

@@ -3,11 +3,11 @@
       implicit none
       
        type calibration_parameters
-        character(len=16) :: name       !         |cn2, esco, awc, etc.
-        character(len=16) :: ob_typ     !         |object type the parameter is associated with (hru, chan, res, basin, etc)
-        real :: absmin                  !         |minimum range for variable
-        real :: absmax                  !         |maximum change for variable
-        character(len=16) :: units      !         |units used for each parameter
+        character(len=16) :: name = "default"   !         |cn2, esco, awc, etc.
+        character(len=16) :: ob_typ = "plt"     !         |object type the parameter is associated with (hru, chan, res, basin, etc)
+        real :: absmin = 0.                     !         |minimum range for variable
+        real :: absmax = 1.e6                   !         |maximum change for variable
+        character(len=16) :: units = "null"     !         |units used for each parameter
       end type calibration_parameters
       type (calibration_parameters), dimension (:), allocatable :: cal_parms    !dimensioned to db_mx%cal_parms_tot
       

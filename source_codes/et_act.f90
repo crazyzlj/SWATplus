@@ -107,14 +107,14 @@
       if (pet > 1.0e-6) then
 
         !! compute potential plant evap for methods other that Penman-Monteith
-        if (bsn_cc%pet /= 1) then
+        !if (bsn_cc%pet /= 1) then
           if (pcom(j)%lai_sum <= 3.0) then
             ep_max = pcom(j)%lai_sum * pet / 3.
           else
             ep_max = pet
           end if
           if (ep_max < 0.) ep_max = 0.
-        end if
+        !end if
 
         !! compute potential soil evaporation
         cej = -5.e-5
@@ -127,7 +127,7 @@
         else
           eaj = Exp(cej * (cover + 0.1))
         end if
-        es_max = pet * eaj * (1.-hru(j)%water_fr)
+        es_max = pet * eaj * (1. - hru(j)%water_fr)
         eos1 = pet / (es_max + ep_max + 1.e-10)
         eos1 = es_max * eos1
         es_max = Min(es_max, eos1)

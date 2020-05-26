@@ -81,12 +81,12 @@
             if (j == 0) j = ob_cur
 
             irrop = d_tbl%act_typ(iac)
-            irrig(j)%demand = irrop_db(irrop)%amt_mm * hru(j)%area_ha / 1000.       ! ha-m = mm * ha / 1000.
+            irrig(j)%demand = irrop_db(irrop)%amt_mm * hru(j)%area_ha * 10.       ! m3 = mm * ha * 10.
             
             !! if unlimited source, set irrigation applied directly to hru
             if (d_tbl%act(iac)%file_pointer == "unlim") then
               irrig(j)%applied = irrop_db(irrop)%amt_mm * irrop_db(irrop)%eff * (1. - irrop_db(irrop)%surq)
-              irrig(j)%runoff = irrop_db(irrop)%amt_mm * irrop_db(irrop)%surq
+              irrig(j)%runoff = irrop_db(irrop)%amt_mm * irrop_db(irrop)%eff * irrop_db(irrop)%surq
               !set organics and constituents from irr.ops ! irrig(j)%water =  cs_irr(j) = 
               if (pco%mgtout == "y") then
                 write (2612, *) j, time%yrc, time%mo, time%day, "        ", "IRRIGATE", phubase(j),  &
@@ -438,7 +438,7 @@
             
             if (pcom(j)%dtbl(idtbl)%num_actions(iac) <= Int(d_tbl%act(iac)%const2)) then
              istr = hru(j)%tiledrain
-              hru(j)%lumv%sdr_dep = d_tbl%act(iac)%const * sdr(istr)%depth
+              hru(j)%lumv%sdr_dep = d_tbl%act(iac)%const
               !if (hru(j)%lumv%sdr_dep > 0) then
               !  do jj = 1, soil(j)%nly
               !    if (hru(j)%lumv%sdr_dep < soil(j)%phys(jj)%d) hru(j)%lumv%ldrain = jj

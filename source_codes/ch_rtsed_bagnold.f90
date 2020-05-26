@@ -502,6 +502,8 @@
       rch_lag = lagin * outfract
       rch_gra = grain * outfract
 
+      !write(*, *) qdin, sedin, outfract, sedrch
+
       if (sedrch  < 1.e-6) then
 	  sedrch = 0.
 	  rch_san = 0.

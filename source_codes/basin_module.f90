@@ -39,6 +39,9 @@
                                  !!   0 do not model
                                  !!   1 model (QUAL2E)
         integer :: nostress = 0  !! redefined to the sequence number  -- changed to no nutrient stress
+                                 !!   0 = all stresses applied
+                                 !!   1 = turn off all plant stress
+                                 !!   2 = turn off nutrient plant stress only
         integer :: cn = 0        !! CN method flag
                                  !!   0 = use traditional SWAT method bases CN 
                                  !!   CN on soil moisture
@@ -95,7 +98,7 @@
         real :: cmn = 0.0003        !! rate factor for mineralization on active org N
         real :: n_updis = 20.0      !! nitrogen uptake dist parm
         real :: p_updis = 20.0      !! phosphorus uptake dist parm
-        real :: nperco = 20.0       !! nitrate perc coeff (0-1)
+        real :: nperco = 0.10       !! nitrate perc coeff (0-1)
                                     !!   0 = conc of nitrate in surface runoff is zero
                                     !!   1 = perc has same conc of nitrate as surf runoff
         real :: pperco = 10.0       !! phos perc coeff (0-1)

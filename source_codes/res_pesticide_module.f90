@@ -16,7 +16,7 @@
         real :: react_bot = 0.          ! kg        !pesticide lost from benthic sediment by reactions
         real :: bury = 0.               ! kg        !pesticide lost from benthic sediment by burial
         real :: water = 0.              ! kg        !pesticide in water at end of day
-        real :: benthic = 0.            ! kg        !pesticide in benthic sediment at tend of day
+        real :: benthic = 0.            ! kg        !pesticide in benthic sediment at end of day
       end type res_pesticide_processes
       
       type res_pesticide_output

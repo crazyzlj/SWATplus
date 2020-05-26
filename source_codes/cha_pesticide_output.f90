@@ -23,7 +23,7 @@
 
       j = jrch  !!! nbs
       
-      iob = sp_ob1%hru + j - 1
+      iob = sp_ob1%chandeg + j - 1
           
       !! print balance for each pesticide
       do ipest = 1, cs_db%num_pests

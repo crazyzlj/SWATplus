@@ -4,20 +4,14 @@
       use calibration_data_module
    
       implicit none
-      
-      !integer :: date_time(8)           !              | 
-      !character*10 b(3)                 !              |
-      !integer :: irch                   !              |
-      !integer :: idat                   !              |
-      !integer :: isched                 !              | 
-      !integer :: iauto                  !none          |counter
-      !integer :: ictl                   !none          |counter
-      !integer :: i                      !none          |counter
    
       !read calibration data (if included)
       call cal_parm_read
       call cal_parmchg_read
 
+      !! need to read plant parms before calibrating
+      call pl_read_parms_cal
+      call pl_read_regions_cal      !soft data for plant parms (lai_pot and harv_idx) calibration
       call cal_conditions
             
       !! read update data
@@ -30,8 +24,6 @@
       !call reg_read_elements       !defining regions by lsu and/or hru
       call lcu_read_softcal         !soft data for landscape calibration (needs to be renamed)***
       call ls_read_lsparms_cal
-      call pl_read_regions_cal      !soft data for hru_lte calibration
-      call pl_read_parms_cal
       call aqu_read_elements        !defining regions by aquifer
       call ch_read_elements         !defining regions by channel
       call res_read_elements        !defining regions by reservoir

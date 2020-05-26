@@ -21,7 +21,7 @@
 
       integer, intent (in)  :: ob_cur         !          |
       integer :: ob_num                       !          |object number   
-      integer :: nbz=748932582                !          |
+      integer :: nbz = 748932582              !          |
       integer, dimension(1) :: seed = (/3/)   !          |
       integer :: ic                           !none      |counter
       integer :: ialt                         !none      |counter

@@ -80,6 +80,6 @@
       write (*,1001)
  1001 format (/," Execution successfully completed ")
 
-	  stop
+!	  stop
       
       end

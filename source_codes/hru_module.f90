@@ -40,29 +40,29 @@
       end type topography
       
       type field
-           character(len=13) :: name = "rep field"
-           real :: length = 0.2  !!            |km            |field length for wind erosion
-           real :: wid = 0.2  !!               |km            |field width for wind erosion
-           real :: ang = 60.  !!               |deg           |field angle for wind erosion
+           character(len=13) :: name = "default"
+           real :: length = 500. !!               |m             |field length for wind erosion
+           real :: wid = 100.    !!               |m             |field width for wind erosion
+           real :: ang = 30.     !!               |deg           |field angle for wind erosion
       end type field
       
       type hydrology
            character(len=13) :: name
-           real :: lat_ttime = 0.  !! lat_ttime(:)  |none          |Exponential of the lateral flow travel time
-           real :: lat_sed = 0.    !! lat_sed(:)    |g/L           |sediment concentration in lateral flow
-           real :: canmx = 0.      !! canmx(:)      |mm H2O        |maximum canopy storage
-           real :: esco = 0.       !! esco(:)       |none          |soil evaporation compensation factor
-           real :: epco = 0.       !! epco(:)       |none          |plant water uptake compensation factor (0-1)
-           real :: erorgn = 0.     !! erorgn(:)     |none          |organic N enrichment ratio, if left blank
-                                   !!                              |the model will calculate for every event
-           real :: erorgp = 0.     !! erorgp(:)     |none          |organic P enrichment ratio, if left blank
-                                   !!                              |the model will calculate for every event
-           real :: cn3_swf = 0.    !!               |none          |curve number adjustment factor - sw at cn3
-           real :: biomix = 0.     !! biomix(:)     |none          |biological mixing efficiency.
-                                   !!                              |Mixing of soil due to activity of earthworms
-                                   !!                              |and other soil biota. Mixing is performed at
-                                   !!                              |the end of every calendar year.
-           real :: perco = 0.      !!               |0-1           |percolation coefficient - linear adjustment to daily perc
+           real :: lat_ttime = 0.   !! lat_ttime(:)  |none          |Exponential of the lateral flow travel time
+           real :: lat_sed = 0.     !! lat_sed(:)    |g/L           |sediment concentration in lateral flow
+           real :: canmx = 0.       !! canmx(:)      |mm H2O        |maximum canopy storage
+           real :: esco = 0.        !! esco(:)       |none          |soil evaporation compensation factor
+           real :: epco = 0.        !! epco(:)       |none          |plant water uptake compensation factor (0-1)
+           real :: erorgn = 0.      !! erorgn(:)     |none          |organic N enrichment ratio, if left blank
+                                    !!                              |the model will calculate for every event
+           real :: erorgp = 0.      !! erorgp(:)     |none          |organic P enrichment ratio, if left blank
+                                    !!                              |the model will calculate for every event
+           real :: cn3_swf = 0.     !!               |none          |curve number adjustment factor - sw at cn3
+           real :: biomix = 0.      !! biomix(:)     |none          |biological mixing efficiency.
+                                    !!                              |Mixing of soil due to activity of earthworms
+                                    !!                              |and other soil biota. Mixing is performed at
+                                    !!                              |the end of every calendar year.
+           real :: perco = 0.       !!               |0-1           |percolation coefficient - linear adjustment to daily perc
            real :: lat_orgn = 0.
            real :: lat_orgp = 0.
            real :: harg_pet  = .0023  
