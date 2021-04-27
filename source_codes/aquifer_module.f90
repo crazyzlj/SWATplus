@@ -138,7 +138,7 @@
           character(len=15) :: seep     =  "             mm"          ! (mm)
           character(len=15) :: revap    =  "             mm"          ! (mm)
           character(len=15) :: no3_st   =  "        kg/ha_N"          ! (kg/ha N)
-          character(len=14) :: minp     =  "            kg"           ! (kg)
+          character(len=15) :: minp     =  "            kg"           ! (kg)
           character(len=15) :: orgn     =  "        kg/ha_N"          ! (kg/ha N)
           character(len=15) :: orgp     =  "        kg/ha_P"          ! (kg/ha P)
           character(len=15) :: rchrgn   =  "        kg/ha_N"          ! (kg/ha N)

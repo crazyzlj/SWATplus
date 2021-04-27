@@ -73,20 +73,20 @@
         rndseed(7,iwgn) = 1767585417
         rndseed(8,iwgn) = 1980520317
         rndseed(9,iwgn) = 392682216
-      end do
-      rndseed10 = 64298628
+    end do
+    rndseed10 = 64298628
 
-      if (bsn_prm%igen /= 0) then
+    if (bsn_prm%igen /= 0) then
         !! assign new random number seeds
         do j = 1, 9
-           rn = 0.
-           ii = 0
-           rn = Aunif(rndseed10)
-           ii = 100 * bsn_prm%igen * rn
-           do k = 1, ii
-             xx = Aunif(rndseed10)
-           end do  
-           rndseed(j,1) = rndseed10
+            rn = 0.
+            ii = 0
+            rn = Aunif(rndseed10)
+            ii = 100 * bsn_prm%igen * rn
+            do k = 1, ii
+                xx = Aunif(rndseed10)
+            end do
+            rndseed(j,1) = rndseed10
         end do
         
         !! assign random number for decision table conditional
@@ -94,28 +94,28 @@
       
         !! shuffle seeds randomly (Bratley, Fox, Schrage, p34)
         do j = 9, 1, -1
-          ii = 0
-          rn = 0.
-          ii = idg(j)
-          rn = Aunif(rndseed10)
-          k = j * rn + 1
-          idg(j) = idg(k)
-          idg(k) = ii
+            ii = 0
+            rn = 0.
+            ii = idg(j)
+            rn = Aunif(rndseed10)
+            k = j * rn + 1
+            idg(j) = idg(k)
+            idg(k) = ii
         end do
-      end if
+    end if
 
-      !! assign half-hour maximum rainfall seed to second array location for use
-      !! in sub-daily pcp generator
-      do iwgn = 1, db_mx%wgnsta
+    !! assign half-hour maximum rainfall seed to second array location for use
+    !! in sub-daily pcp generator
+    do iwgn = 1, db_mx%wgnsta
         rndseed(10,iwgn) = rndseed(idg(6),iwgn)
-      end do
+    end do
 
-      do iwgn = 1, db_mx%wgnsta
+    do iwgn = 1, db_mx%wgnsta
         rnd2(iwgn) = Aunif(rndseed(idg(2),iwgn))
         rnd3(iwgn) = Aunif(rndseed(idg(3),iwgn))
         rnd8(iwgn) = Aunif(rndseed(idg(8),iwgn))
         rnd9(iwgn) = Aunif(rndseed(idg(9),iwgn))
-      end do
+    end do
 
-      return
-      end subroutine gcycl
+    return
+end subroutine gcycl
