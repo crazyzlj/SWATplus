@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.8)
 
 ### Read SWAT versions and set project name
 file(READ "VERSIONS" ver)
-string(REGEX MATCH "VERSION_MAJOR ([0-9]*)" _ ${ver})  # major version, e.g., 2019
+string(REGEX MATCH "VERSION_MAJOR ([0-9]*)" _ ${ver})
 set(SWAT_VER_MAJOR ${CMAKE_MATCH_1})
 string(REGEX MATCH "VERSION_MINOR ([0-9]*)" _ ${ver})
 set(SWAT_VER_MINOR ${CMAKE_MATCH_1})
@@ -171,7 +171,7 @@ IF(NOT CMAKE_GENERATOR MATCHES "Xcode|Visual Studio")
     STATUS("    Configuration:"  ${CMAKE_BUILD_TYPE})
 ENDIF()
 
-### C/C++ options.
+### Compiler options.
 IF(CMAKE_CXX_COMPILER_VERSION)
     SET(GEO_COMPILER_STR "${CMAKE_Fortran_COMPILER} ${CMAKE_Fortran_COMPILER_ARG1} (ver ${CMAKE_Fortran_COMPILER_VERSION})")
 ELSE()
