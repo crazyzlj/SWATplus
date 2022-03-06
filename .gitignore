@@ -32,3 +32,6 @@
 cmake-build*/
 build*/
 bin
+
+# macOS tmp
+.DS_Store
