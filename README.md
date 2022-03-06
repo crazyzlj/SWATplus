@@ -8,7 +8,10 @@
 > SWAT+, a completely revised version of the SWAT model. SWAT+ provides a more flexible spatial representation of interactions and processes within a watershed.
 
 Official site: https://swat.tamu.edu/software/plus/.
+
 Official source code: https://bitbucket.org/blacklandgrasslandmodels/modular_swatplus/src/master/
+
+Latest update: version 60.5.3 with bug fixed, see [this commit](https://github.com/WatershedModels/SWATplus/commit/15c79c2fb25ea99b039497a0f9a19f51c20eeb09).
 
 ## 2. About this repository
 
