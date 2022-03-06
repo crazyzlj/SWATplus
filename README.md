@@ -1,7 +1,7 @@
 # Unofficial collection of SWAT+ code
 
-[![Build by GCC(gfortran) on Linux/macOS](https://github.com/WatershedModels/SWATplus/actions/workflows/cmake_build_gcc.yml/badge.svg)](https://github.com/WatershedModels/SWATplus/actions/workflows/cmake_build_gcc.yml)
-[![Build by IntelFortran(ifort) on Linux](https://github.com/WatershedModels/SWATplus/actions/workflows/cmake_build_ifort.yml/badge.svg)](https://github.com/WatershedModels/SWATplus/actions/workflows/cmake_build_ifort.yml)
+[![Build by GCC(gfortran) on Linux/macOS](https://github.com/WatershedModels/SWATplus/actions/workflows/cmake_build_gcc.yml/badge.svg?branch=develop)](https://github.com/WatershedModels/SWATplus/actions/workflows/cmake_build_gcc.yml)
+[![Build by IntelFortran(ifort) on Linux](https://github.com/WatershedModels/SWATplus/actions/workflows/cmake_build_ifort.yml/badge.svg?branch=develop)](https://github.com/WatershedModels/SWATplus/actions/workflows/cmake_build_ifort.yml)
 
 ## 1. About SWAT+ (Soil & Water Assessment Tool Plus)
 
