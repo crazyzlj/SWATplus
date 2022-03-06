@@ -13,7 +13,10 @@
 
       do ly = 1, soil(isol)%nly
           dep_frac=Exp(-solt_db(isolt)%exp_co * soil(isol)%phys(ly)%d)
-          soil1(isol)%mn(ly)%no3 = solt_db(isolt)%inorgn * dep_frac
+          soil1(isol)%mn(ly)%no3 = solt_db(isolt)%nitrate * dep_frac
+          !soil1(isol)%mn(ly)%no3 = solt_db(isolt)%inorgn * dep_frac
+          !The type soiltest_db changed to soiltest_db_old in v60.5.3, which deletes inorgn,
+          !  I think the new variable is nitrate in new soiltest_db type. By Liangjun, 03/06/22
           !soil1(isol)%mp(ly)%lab = solt_db(isolt)%inorgp * dep_frac
           !soil1(isol)%hp(ly)%n = solt_db(isolt)%orgn * dep_frac
           !soil1(isol)%hp(ly)%p = solt_db(isolt)%orgp * dep_frac
