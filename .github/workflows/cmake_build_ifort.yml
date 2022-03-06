@@ -18,7 +18,7 @@ env:
 
 jobs:
 
-  linux-intel-oneapi:
+  build-ubuntu-ifort:
     runs-on: ubuntu-latest
     env:
       CC: icx
@@ -37,7 +37,7 @@ jobs:
         
     - name: Install Intel oneAPI
       timeout-minutes: 5
-      run: sudo apt-get install intel-oneapi-compiler-fortran intel-oneapi-compiler-dpcpp-cpp-and-cpp-classic intel-oneapi-mpi intel-oneapi-mpi-devel intel-oneapi-mkl ninja-build
+      run: sudo apt-get install intel-oneapi-compiler-fortran
 
     - name: Checkout SWATplus
       uses: actions/checkout@v2
