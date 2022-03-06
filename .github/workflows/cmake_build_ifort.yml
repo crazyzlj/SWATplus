@@ -5,11 +5,15 @@ name: Build by IntelFortran on Linux
 
 on:
     push:
-        paths-ignore:
-            - 'doc/**'
+        paths:
+            - 'cmake/**'
+            - 'source_codes/**'
+            - 'CMakeLists.txt'
     pull_request:
-        paths-ignore:
-            - 'doc/**'
+        paths:
+            - 'cmake/**'
+            - 'source_codes/**'
+            - 'CMakeLists.txt'
     workflow_dispatch:
 
 env:
@@ -21,8 +25,6 @@ jobs:
   build-ubuntu-ifort:
     runs-on: ubuntu-latest
     env:
-      CC: icx
-      CXX: icpx
       FC: ifort
 
     steps:
