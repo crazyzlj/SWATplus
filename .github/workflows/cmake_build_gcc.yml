@@ -4,11 +4,15 @@ name: Build by GCC on Linux/macOS
 
 on:
     push:
-        paths-ignore:
-            - 'doc/**'
+        paths:
+            - 'cmake/**'
+            - 'source_codes/**'
+            - 'CMakeLists.txt'
     pull_request:
-        paths-ignore:
-            - 'doc/**'
+        paths:
+            - 'cmake/**'
+            - 'source_codes/**'
+            - 'CMakeLists.txt'
     workflow_dispatch:
 
 env:

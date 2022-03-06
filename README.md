@@ -1,18 +1,18 @@
 # Unofficial collection of SWAT+ code
 
 [![Build by GCC(gfortran) on Linux/macOS](https://github.com/WatershedModels/SWATplus/actions/workflows/cmake_build_gcc.yml/badge.svg)](https://github.com/WatershedModels/SWATplus/actions/workflows/cmake_build_gcc.yml)
-
 [![Build by IntelFortran(ifort) on Linux](https://github.com/WatershedModels/SWATplus/actions/workflows/cmake_build_ifort.yml/badge.svg)](https://github.com/WatershedModels/SWATplus/actions/workflows/cmake_build_ifort.yml)
 
 ## 1. About SWAT+ (Soil & Water Assessment Tool Plus)
 
 > SWAT+, a completely revised version of the SWAT model. SWAT+ provides a more flexible spatial representation of interactions and processes within a watershed.
 
-From official site: https://swat.tamu.edu/
+Official site: https://swat.tamu.edu/software/plus/.
+Official source code: https://bitbucket.org/blacklandgrasslandmodels/modular_swatplus/src/master/
 
 ## 2. About this repository
 
-This is **not** an official repository of SWAT+.
+This is **not** an official repository of SWAT+. 
 
 This repository is an attempt to bring historical releases from official develop team and various enhancement or improvement from scientific community, i.e., the unofficial collection of SWAT+ code. 
 
