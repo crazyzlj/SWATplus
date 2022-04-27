@@ -11,7 +11,7 @@ Official site: https://swat.tamu.edu/software/plus/.
 
 Official source code: https://bitbucket.org/blacklandgrasslandmodels/modular_swatplus/src/master/
 
-Latest update: version 60.5.3 with bug fixed, see [this commit](https://github.com/WatershedModels/SWATplus/commit/15c79c2fb25ea99b039497a0f9a19f51c20eeb09).
+Latest update: version 60.5.4 with compilation issues and typos fixed, see [this commit](https://bitbucket.org/blacklandgrasslandmodels/modular_swatplus/commits/3d2126fb115077b51be90526238c83cd79e3ef4c).
 
 ## 2. About this repository
 

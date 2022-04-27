@@ -4,6 +4,8 @@ name: Build by GCC on Linux/macOS
 
 on:
     push:
+        branches:
+            - develop
         paths:
             - 'cmake/**'
             - 'source_codes/**'

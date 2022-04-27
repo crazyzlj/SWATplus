@@ -5,6 +5,8 @@ name: Build by IntelFortran on Linux
 
 on:
     push:
+        branches:
+            - develop
         paths:
             - 'cmake/**'
             - 'source_codes/**'
@@ -14,7 +16,6 @@ on:
             - 'cmake/**'
             - 'source_codes/**'
             - 'CMakeLists.txt'
-    workflow_dispatch:
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)

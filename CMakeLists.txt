@@ -105,7 +105,7 @@ ENDIF(FCNAME STREQUAL "pgf90")
 # Define the actual files and folders that make up the build
 ############################################################
 
-### Set primary name of the executable SWAT
+### Set primary name of the executable SWAT+
 set(swatexe swatplus)
 ### Add source files.
 set(src_dir source_codes)
