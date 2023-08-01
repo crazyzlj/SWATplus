@@ -7,7 +7,8 @@
       
       character (len=80) :: title, header
       integer :: max_table, tnum_conds, ii, ictbl, icon, isub_con, icc, imod, iconds
-      integer :: i_exist, eof
+      logical :: i_exist
+      integer :: eof
       
       inquire (file="res_conds.dat", exist=i_exist)
       if (.not. i_exist) return
